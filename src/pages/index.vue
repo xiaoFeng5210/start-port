@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TheImage from '~/components/TheImage.vue'
 const router = useRouter()
 const go = () => {
   router.push('/foo')
@@ -14,6 +13,7 @@ const go = () => {
         Go
       </button>
     </div>
-    <TheImage w-50 h-50 rounded-xl m10 />
+    <!-- <TheImage w-50 h-50 rounded-xl m10 /> -->
+    <FloatProxy w-50 h-50 rounded-xl m10 />
   </div>
 </template>
