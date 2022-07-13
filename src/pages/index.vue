@@ -1,21 +1,15 @@
 <script setup lang="ts">
-const name = $ref('')
-
 const router = useRouter()
 const go = () => {
-  if (name)
-    router.push(`/hi/${encodeURIComponent(name)}`)
+  router.push('/foo')
 }
 </script>
 
 <template>
   <div>
+    <div>Index</div>
     <div>
-      <button
-        class="m-3 text-sm btn"
-        :disabled="!name"
-        @click="go"
-      >
+      <button class="m-3 text-sm btn" @click="go">
         Go
       </button>
     </div>
