@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { StyleValue } from 'vue'
 import { metadata, proxyEl } from '~/composables/floating'
 
 const rect = ref<DOMRect>({
@@ -12,9 +13,11 @@ const rect = ref<DOMRect>({
 watch(proxyEl, (el) => {
   rect.value = el?.getBoundingClientRect() ?? rect.value
 }, { immediate: true })
-const style = computed(() => {
+const style = computed((): StyleValue => {
   const { top, left, width, height } = rect.value
   return {
+    transition: 'all .5s ease-in-out',
+    position: 'fixed',
     top: `${top}px`,
     left: `${left}px`,
     width: `${width}px`,
