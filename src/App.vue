@@ -3,7 +3,7 @@
     <router-view />
     <!-- <Footer /> -->
   </main>
-  <FloatContainer>
-    <TheImage />
+  <FloatContainer v-slot="props">
+    <TheImage v-bind="props" />
   </FloatContainer>
 </template>

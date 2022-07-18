@@ -3,6 +3,6 @@ import { metadata } from '~/composables/floating'
 </script>
 
 <template>
-  {{ metadata }}
-  <slot v-bind="{ ...metadata.attrs }" />
+  {{ metadata.attrs }}
+  <slot v-bind="metadata.attrs" />
 </template>
