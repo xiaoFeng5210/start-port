@@ -3,7 +3,7 @@
 
 <template>
   <div overflow-hidden transition-all style="object-fit: contain">
-    <img src="/image/brian-girl.jpg" alt="">
+    <img object-cover block w-full h-full src="/image/brian-girl.jpg" alt="">
   </div>
 </template>
 
