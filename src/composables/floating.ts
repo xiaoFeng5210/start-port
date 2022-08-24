@@ -55,16 +55,13 @@ export function createFloating<T extends Component>(component: T) {
       useEventListener("resize", update);
       watchEffect(update);
 
-      return () =>
-        h("div", { style: style.value }, [h(component, metadata.attrs)])
+      return () => h("div", { style: style.value }, [h(component, metadata.attrs)])
     }
   })
 
   const proxy = defineComponent({
     setup(props, ctx) {
-      // const props = defineProps<{}>()
       const attrs = useAttrs()
-      metadata.props = props
       metadata.attrs = attrs
       const el = ref<HTMLElement>()
       onMounted(() => {
@@ -77,7 +74,7 @@ export function createFloating<T extends Component>(component: T) {
   })
 
   return {
-    container,
-    proxy,
+    Container: container,
+    Proxy: proxy,
   }
 }

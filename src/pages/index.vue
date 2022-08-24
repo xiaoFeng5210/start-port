@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Proxy } from '../composables/image'
 const router = useRouter()
 const go = () => {
   router.push('/foo')
@@ -14,7 +15,7 @@ const go = () => {
       </button>
     </div>
     <div m10>
-      <FloatProxy w-50 h-50 rounded-xl />
+      <Proxy w-50 h-50 rounded-xl />
     </div>
     <!-- <TheImage w-50 h-50 rounded-xl m10 /> -->
   </div>
