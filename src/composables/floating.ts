@@ -1,10 +1,10 @@
-import type { Component, StyleValue } from "vue";
-import { h } from "vue";
+import type { Component, StyleValue } from "vue"
+import { h } from "vue"
 
 export const metadata = reactive<any>({
   props: {},
   attrs: {},
-});
+})
 
 export const proxyEl = ref<HTMLElement | null>();
 
@@ -14,7 +14,7 @@ export function createFloating<T extends Component>(component: T) {
     attrs: {},
   });
 
-  const proxyEl = ref<HTMLElement | null>();
+  const proxyEl = ref<HTMLElement | null>()
 
   const container = defineComponent({
     setup() {
@@ -56,9 +56,9 @@ export function createFloating<T extends Component>(component: T) {
       watchEffect(update);
 
       return () =>
-        h("div", { style: style.value }, [h(component, metadata.attrs)]);
-    },
-  });
+        h("div", { style: style.value }, [h(component, metadata.attrs)])
+    }
+  })
 
   const proxy = defineComponent({
     setup(props, ctx) {
@@ -73,11 +73,11 @@ export function createFloating<T extends Component>(component: T) {
       return () => h('div', { ref: el }, [
         ctx.slots.default ? h(ctx.slots.default) : null
       ])
-    },
+    }
   })
 
   return {
     container,
     proxy,
-  };
+  }
 }
