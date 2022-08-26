@@ -69,6 +69,10 @@ export function createFloating<T extends Component>(component: T) {
       onMounted(() => {
         proxyEl.value = el.value
       })
+
+      onBeforeUnmount(() => {
+        proxyEl.value = undefined
+      })
       return () => h('div', { ref: el }, [
         ctx.slots.default ? h(ctx.slots.default) : null
       ])
