@@ -4,6 +4,9 @@ const router = useRouter()
 const go = () => {
   router.push('/foo')
 }
+const gobar = () => {
+  router.push('/bar')
+}
 </script>
 
 <template>
@@ -13,6 +16,7 @@ const go = () => {
       <button class="m-3 text-sm btn" @click="go">
         Go
       </button>
+      <button class="m-3 text-sm btn" @click="gobar">bar</button>
     </div>
     <div m10>
       <TheImageProxy w-50 h-50 rounded-xl />

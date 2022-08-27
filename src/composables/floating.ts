@@ -18,14 +18,7 @@ export function createFloating<T extends Component>(component: T) {
 
   const container = defineComponent({
     setup() {
-      const rect = ref<DOMRect | undefined>({
-        top: 0,
-        left: 0,
-        width: 0,
-        height: 0,
-        bottom: 0,
-        right: 0,
-      } as DOMRect);
+      const rect = ref<DOMRect | undefined>();
       watch(
         proxyEl,
         (el) => {
@@ -34,9 +27,20 @@ export function createFloating<T extends Component>(component: T) {
         { immediate: true }
       );
       const style = computed((): StyleValue => {
-        return {
+        const fixed: StyleValue = {
           transition: "all .5s ease-in-out",
           position: "fixed",
+        }
+        if (!rect.value || !proxyEl.value) {
+          return {
+            ...fixed,
+            opacity: 0,
+            transform: 'translateY(-100px)',
+            pointerEvents: 'none'
+          }
+        }
+        return {
+          ...fixed,
           top: `${rect.value?.top ?? 0}px`,
           left: `${rect.value?.left ?? 0}px`,
         };
@@ -71,7 +75,10 @@ export function createFloating<T extends Component>(component: T) {
       })
 
       onBeforeUnmount(() => {
-        proxyEl.value = undefined
+        if (proxyEl.value === el.value) {
+          proxyEl.value = undefined
+        }
+        
       })
       return () => h('div', { ref: el }, [
         ctx.slots.default ? h(ctx.slots.default) : null
