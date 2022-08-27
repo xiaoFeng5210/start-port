@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Container } from './composables/image'
+import { TheImageContainer } from './composables/image'
 </script>
 
 <template>
@@ -7,8 +7,5 @@ import { Container } from './composables/image'
     <router-view />
     <!-- <Footer /> -->
   </main>
-  <!-- <FloatContainer v-slot="props">
-    <TheImage v-bind="props" />
-  </FloatContainer> -->
-  <Container />
+  <TheImageContainer />
 </template>

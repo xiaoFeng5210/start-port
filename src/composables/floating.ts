@@ -80,7 +80,7 @@ export function createFloating<T extends Component>(component: T) {
   })
 
   return {
-    Container: container,
-    Proxy: proxy,
+    container,
+    proxy,
   }
 }

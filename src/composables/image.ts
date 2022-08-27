@@ -1,10 +1,10 @@
 import { createFloating } from "./floating";
 import TheImage from "~/components/TheImage.vue";
 
-const { Container, Proxy } = createFloating(TheImage)
+const { container, proxy } = createFloating(TheImage)
 
 export {
-  Container,
-  Proxy,
+  container as TheImageContainer,
+  proxy as TheImageProxy,
 }
 

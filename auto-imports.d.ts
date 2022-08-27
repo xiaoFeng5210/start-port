@@ -9,9 +9,8 @@ declare global {
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
   const : typeof import('./src/composables/image')['']
-  const Container: typeof import('./src/composables/image')['Container']
   const EffectScope: typeof import('vue')['EffectScope']
-  const Proxy: typeof import('./src/composables/image')['Proxy']
+  const TheImageProxy: typeof import('./src/composables/image')['TheImageProxy']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const computed: typeof import('vue')['computed']
@@ -19,6 +18,7 @@ declare global {
   const computedEager: typeof import('@vueuse/core')['computedEager']
   const computedInject: typeof import('@vueuse/core')['computedInject']
   const computedWithControl: typeof import('@vueuse/core')['computedWithControl']
+  const container as TheImageContainer: typeof import('./src/composables/image')['container as TheImageContainer']
   const controlledComputed: typeof import('@vueuse/core')['controlledComputed']
   const controlledRef: typeof import('@vueuse/core')['controlledRef']
   const createApp: typeof import('vue')['createApp']
@@ -267,9 +267,8 @@ declare module '@vue/runtime-core' {
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
     readonly : UnwrapRef<typeof import('./src/composables/image')['']>
-    readonly Container: UnwrapRef<typeof import('./src/composables/image')['Container']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly Proxy: UnwrapRef<typeof import('./src/composables/image')['Proxy']>
+    readonly TheImageProxy: UnwrapRef<typeof import('./src/composables/image')['TheImageProxy']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -277,6 +276,7 @@ declare module '@vue/runtime-core' {
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
     readonly computedInject: UnwrapRef<typeof import('@vueuse/core')['computedInject']>
     readonly computedWithControl: UnwrapRef<typeof import('@vueuse/core')['computedWithControl']>
+    readonly container as TheImageContainer: UnwrapRef<typeof import('./src/composables/image')['container as TheImageContainer']>
     readonly controlledComputed: UnwrapRef<typeof import('@vueuse/core')['controlledComputed']>
     readonly controlledRef: UnwrapRef<typeof import('@vueuse/core')['controlledRef']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
