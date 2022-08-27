@@ -1,5 +1,9 @@
 import type { Component, StyleValue } from 'vue'
-import { h } from 'vue'
+import { h, Teleport } from 'vue'
+
+export interface FloatingOptions {
+  duration?: number
+}
 
 export const metadata = reactive<any>({
   props: {},
@@ -8,12 +12,12 @@ export const metadata = reactive<any>({
 
 export const proxyEl = ref<HTMLElement | null>()
 
-export function createFloating<T extends Component>(component: T) {
+export function createFloating<T extends Component>(component: T, options?: FloatingOptions) {
   const metadata = reactive<any>({
     props: {},
     attrs: {},
   })
-
+  const { duration = 500 } = options || {}
   const proxyEl = ref<HTMLElement | null>()
 
   const container = defineComponent({
@@ -28,7 +32,8 @@ export function createFloating<T extends Component>(component: T) {
       );
       const style = computed((): StyleValue => {
         const fixed: StyleValue = {
-          transition: "all .5s ease-in-out",
+          transition: "all",
+          transitionDuration: duration + "s",
           position: "fixed",
         }
         if (!rect.value || !proxyEl.value) {
@@ -57,9 +62,30 @@ export function createFloating<T extends Component>(component: T) {
       });
 
       useEventListener("resize", update);
-      watchEffect(update);
 
-      return () => h("div", { style: style.value }, [h(component, metadata.attrs)])
+
+      let landed = $ref(false);
+      function liftOff() {
+        landed = false
+      }
+      function land() {
+        landed = true
+      }
+      watch(proxyEl, (el) => {
+        liftOff()
+        update()
+        if (el) {
+          setTimeout(() => {
+            land()
+          }, duration)
+        }
+      });
+      return () => {
+        const children = [h(component, metadata.attrs)]
+        return landed && proxyEl.value
+          ? h(Teleport, { to: proxyEl.value }, children)
+          : h("div", { style: style.value }, children)
+      }
     }
   })
 
