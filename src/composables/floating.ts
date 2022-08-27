@@ -65,19 +65,21 @@ export function createFloating<T extends Component>(component: T, options?: Floa
 
 
       let landed = $ref(false);
+      let landing: NodeJS.Timeout
       function liftOff() {
         landed = false
       }
       function land() {
-        landed = true
+        landing = setTimeout(() => {
+          landed = true
+        }, duration)
       }
       watch(proxyEl, (el) => {
+        clearTimeout(landing)
         liftOff()
         update()
         if (el) {
-          setTimeout(() => {
-            land()
-          }, duration)
+          land()
         }
       });
       return () => {
